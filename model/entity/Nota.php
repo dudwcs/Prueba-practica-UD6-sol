@@ -15,9 +15,9 @@ class Nota implements JsonSerializable
 
     use ViewData;
 
-    private ?int $id;
-    private string $titulo;
-    private string $contenido;
+    private ?int $id = null;
+    private string $titulo="";
+    private string $contenido="";
 
     private ?string $imagePath = "";
 
