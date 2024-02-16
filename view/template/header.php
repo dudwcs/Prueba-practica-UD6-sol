@@ -14,5 +14,20 @@
 				<h1 class="mb-3"><?php echo $controller->page_title; ?></h1>
 				<h4 class="mb-3">-</h4>
 			</div>
+
+			<?php 
+                if (SessionManager::iniciarSesion() && isset($_SESSION["userId"])) { 
+                 
+                    ?>
+                    <div class="d-flex  justify-content-end  align-items-center">
+                        <div class="d-flex mx-2 align-items-center justify-content-end">
+                            <p class="lead">¡Hola <?=$_SESSION["email"]?>!</p>
+                        </div>
+                        
+                        <form method="post" action="FrontController.php?controller=Usuario&action=logout" class="d-flex mx-2 align-items-center justify-content-start">
+                              <input type="submit" class="btn btn-primary btn-block" value="Cerrar sesión" name="btnCerrar"></button>
+                        </form>
+                    </div>
+                <?php } ?>
 		</header>
 
