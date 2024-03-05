@@ -7,5 +7,6 @@
  * @author wadmin
  */
 interface IUsuarioRepository extends IBaseRepository{
-  public function findUsuarioByEmail($email): Usuario;
+  //Para permitir que devuelva null, hay que permitir que el tipo sea nullable con el ? 
+  public function findUsuarioByEmail($email): ?Usuario;
 }
