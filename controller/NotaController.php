@@ -4,14 +4,14 @@ class NotaController {
 
     public $page_title;
     public $view;
-    private $notaServicio;
+    private $productoServicio;
     
     const VIEW_FOLDER='note';
 
     public function __construct() {
         $this->view = self::VIEW_FOLDER.DIRECTORY_SEPARATOR.'list_note';
         $this->page_title = '';
-        $this->notaServicio = new NotaServicio();
+        $this->productoServicio = new NotaServicio();
     }
 
     /* List all notes */
@@ -19,7 +19,7 @@ class NotaController {
     public function list() {
         $this->page_title = 'Listado de notas';
 
-        return $this->notaServicio->getNotas();
+        return $this->productoServicio->getNotas();
     }
 
     /* Load note for edit */
@@ -31,7 +31,7 @@ class NotaController {
         if (isset($_GET["id"])) {
             $id = $_GET["id"];
 
-            $nota = $this->notaServicio->getNoteById($id);
+            $nota = $this->productoServicio->getNoteById($id);
         } else {
             //para creación
             $nota = new Nota();
@@ -63,7 +63,7 @@ class NotaController {
         $nota->setContenido($content);
         $nota->setId($id);
         
-         $notaGuardada = $this->notaServicio->save($nota, $_FILES["fichero"]);
+         $notaGuardada = $this->productoServicio->save($nota, $_FILES["fichero"]);
         //para saber si ha habido error o no
                   
 
@@ -82,7 +82,7 @@ class NotaController {
     public function confirmDelete() {
         $this->page_title = 'Eliminar nota';
         $this->view = self::VIEW_FOLDER.DIRECTORY_SEPARATOR.'confirm_delete_note';
-        return $this->notaServicio->getNoteById($_GET["id"]);
+        return $this->productoServicio->getNoteById($_GET["id"]);
     }
 
     /* Delete */
@@ -90,7 +90,7 @@ class NotaController {
     public function delete(): bool {
         $this->page_title = 'Listado de notas';
         $this->view =self::VIEW_FOLDER.DIRECTORY_SEPARATOR. 'delete_note';
-        return $this->notaServicio->deleteNoteById($_POST["id"]);
+        return $this->productoServicio->deleteNoteById($_POST["id"]);
     }
 
 }
