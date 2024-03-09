@@ -14,11 +14,21 @@ class ProductoController {
         $this->productoServicio = new ProductoServicio();
     }
 
-    /* List all notes */
+    /* List all products */
 
     public function list() {
         $this->page_title = 'Listado de productos';
         return $this->productoServicio->getProductos();
+    }
+
+    public function delete(){
+        if (isset($_POST["id"])){
+           $exito = $this->productoServicio->delete($_POST["id"]);
+           session_start();
+            $_SESSION["error"]=!$exito;
+            header("Location: FrontController.php?controller=Producto&action=list");
+            exit;
+        }
     }
 
 }

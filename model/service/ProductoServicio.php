@@ -11,7 +11,7 @@ class ProductoServicio {
      
     }
 
-    /* Get all notes */
+    /* Get all products */
 
     public function getProductos(): array {
 
@@ -20,6 +20,9 @@ class ProductoServicio {
         return $productos;
     }
 
+    public function delete(int $id): bool{
+        return $this->productoRepository->delete($id);
+    }
 
   
 }
